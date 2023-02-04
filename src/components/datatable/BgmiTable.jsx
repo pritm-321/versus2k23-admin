@@ -20,12 +20,15 @@ const Datatable = () => {
     const { games ,loading, error } = gameList;
   console.log(games);
 
+  const paymentStatus = useSelector((state) => state.paymentStatus);
+  const { msg} = paymentStatus;
+
   useEffect(()=>{
     if(!userInfo){
       navigate('/')
     }
     dispatch(getGameList("bgmi"))
-  },[userInfo, navigate, dispatch])
+  },[userInfo, navigate, msg, dispatch])
  
   const userColumns = [
    
