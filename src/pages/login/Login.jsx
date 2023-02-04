@@ -25,7 +25,7 @@ useEffect(()=>{
 
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log(username, password);
+    // console.log(username, password);
     dispatch(login(username, password));
   };
 

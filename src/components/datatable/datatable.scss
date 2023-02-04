@@ -39,7 +39,7 @@
   .cellWithStatus {
     padding: 5px;
     border-radius: 5px;
-
+    margin: 5px;
     &.true {
       background-color: rgba(0, 128, 0, 0.05);
       color: green;

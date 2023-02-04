@@ -60,7 +60,7 @@ export const updatePayment = (email, GameName) => async (dispatch, getState) => 
             const { data } = await axios.post(
                 "https://versus-event.herokuapp.com/api/v1/admin/bdb2edd1a123abf5f2be496aa5/updatepaymentStatusByEmailAndGameName",{email : email , gameName : GameName} ,config
             );
-            // console.log(data.message)
+            // console.log(data)
             dispatch({
                 type: PAYMENT_UPDATE_SUCCESS,
                 payload: data.message

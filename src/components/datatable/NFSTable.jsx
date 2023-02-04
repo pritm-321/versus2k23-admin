@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 import { Bars } from "react-loader-spinner";
 import { getGameList, updatePayment } from "../../redux/actions/gameActions";
+import { ToastContainer, toast } from "react-toastify";
 
 const Datatable = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,21 @@ const Datatable = () => {
   useEffect(() => {
     if (!userInfo) {
       navigate("/");
+    }
+    if (msg){
+      toast.success(
+        msg,
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme:"dark",
+        }
+      )
     }
     dispatch(getGameList("nfs"));
   }, [userInfo, navigate, msg, dispatch]);
@@ -83,7 +99,7 @@ const Datatable = () => {
           <div className="cellAction">
             <div
               className="selectButton"
-              onClick={() => handleSelect(params.row.email, "ballpool")}
+              onClick={() => handleSelect(params.row.email, "nfs")}
             >
               Accept Payment
             </div>
@@ -104,6 +120,7 @@ const Datatable = () => {
         </Typography>
       </div>
       <div className="datatable">
+        <ToastContainer/>
         {loading ? (
           <Bars
             height="80"
