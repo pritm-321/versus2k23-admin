@@ -14,9 +14,16 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { useContext } from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../../redux/actions/userActions";
 
 const Sidebar = () => {
   const { dispatch } = useContext(DarkModeContext);
+  const dispatch1 =useDispatch()
+
+  const userLogout = () => {
+    dispatch1(logout())
+  };
   return (
     <div className="sidebar">
       <div className="top">
@@ -39,21 +46,39 @@ const Sidebar = () => {
               <span>Users</span>
             </li>
           </Link>
-          <Link to="/products" style={{ textDecoration: "none" }}>
+          <Link to="/bgmi-registrations" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
-              <span>Products</span>
+              <PersonOutlineIcon className="icon" />
+              <span>BGMI</span>
             </li>
           </Link>
-          <li>
-            <CreditCardIcon className="icon" />
-            <span>Orders</span>
-          </li>
-          <li>
-            <LocalShippingIcon className="icon" />
-            <span>Delivery</span>
-          </li>
-          <p className="title">USEFUL</p>
+          <Link to="/valorant-registrations" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Valorant</span>
+            </li>
+          </Link>
+
+          <Link to="/cs-registrations" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>CS 1.6</span>
+            </li>
+          </Link>
+          <Link to="/ballpool-registrations" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>8 Ball Pool</span>
+            </li>
+          </Link>
+          <Link to="/nfs-registrations" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>NFS</span>
+            </li>
+          </Link>
+          
+          {/* <p className="title">USEFUL</p>
           <li>
             <InsertChartIcon className="icon" />
             <span>Stats</span>
@@ -74,15 +99,17 @@ const Sidebar = () => {
           <li>
             <SettingsApplicationsIcon className="icon" />
             <span>Settings</span>
-          </li>
+          </li> */}
           <p className="title">USER</p>
-          <li>
+          {/* <li>
             <AccountCircleOutlinedIcon className="icon" />
             <span>Profile</span>
-          </li>
-          <li>
+          </li> */}
+          <li >
+            <div onClick={userLogout}>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span >Logout</span>
+            </div>
           </li>
         </ul>
       </div>

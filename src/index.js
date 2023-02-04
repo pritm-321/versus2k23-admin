@@ -3,12 +3,15 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import { DarkModeContextProvider } from "./context/darkModeContext";
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import store from "./redux/store";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <DarkModeContextProvider>
       <App />
     </DarkModeContextProvider>
-  </React.StrictMode>,
+  </Provider>,
+ 
   document.getElementById("root")
 );

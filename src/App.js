@@ -17,23 +17,25 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/">
-            <Route index element={<Home />} />
-            <Route path="login" element={<Login />} />
+            <Route index element={<Login />} />
+            <Route path="home" element={<Home />} />
             <Route path="users">
-              <Route index element={<List />} />
-              <Route path=":userId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={userInputs} title="Add New User" />}
-              />
+              <Route index element={<List users/>} />
             </Route>
-            <Route path="products">
-              <Route index element={<List />} />
-              <Route path=":productId" element={<Single />} />
-              <Route
-                path="new"
-                element={<New inputs={productInputs} title="Add New Product" />}
-              />
+            <Route path="bgmi-registrations">
+              <Route index element={<List bgmi/>} />
+            </Route>
+            <Route path="valorant-registrations">
+              <Route index element={<List valorant/>} />
+            </Route>
+            <Route path="cs-registrations">
+              <Route index element={<List cs/>} />
+            </Route>
+            <Route path="ballpool-registrations">
+              <Route index element={<List ballpool/>} />
+            </Route>
+            <Route path="nfs-registrations">
+              <Route index element={<List nfs/>} />
             </Route>
           </Route>
         </Routes>
