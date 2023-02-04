@@ -40,3 +40,6 @@ export const getGameList = (game) => async (dispatch, getState) => {
         });
     }
 }
+
+
+

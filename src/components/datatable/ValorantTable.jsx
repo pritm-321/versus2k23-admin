@@ -157,11 +157,32 @@ const Datatable = () => {
           );
         },
       },
+  ];
+
+  const handleSelect = (email,gameName) => {
+    // dispatch(updateProjectStatus(email,gameName))
     
-
-   
-
-   
+  };
+  const actionColumn = [
+    {
+      field: "select",
+      headerName: "Approve Payment",
+      width: 160,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <div
+              className="selectButton"
+              onClick={() => handleSelect(params.row.email,"ballpool")}
+            >
+              Accept Payment
+            </div>
+          </div>
+        );
+      },
+    },
   ];
 
   // const handleDelete = (id) => {
@@ -191,7 +212,9 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={games}
-        columns={userColumns}
+        columns={userInfo.role === "admin-super"
+        ? userColumns.concat(actionColumn)
+        : userColumns}
         pageSize={20}
         rowsPerPageOptions={[20]}
         // checkboxSelection

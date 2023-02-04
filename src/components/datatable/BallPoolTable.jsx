@@ -14,8 +14,8 @@ const Datatable = () => {
   const navigate=useNavigate()
 
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
-
+  const { userInfo } = userLogin
+  console.log(userInfo)
     const gameList = useSelector((state) => state.gameList);
     const { games ,loading, error } = gameList;
   console.log(games);
@@ -32,7 +32,7 @@ const Datatable = () => {
     {
       field: "name",
       headerName: "Name",
-      width: 400,
+      width: 360,
       headerClassName: "super-app-theme--header",
       headerAlign: "center",
     },
@@ -75,9 +75,64 @@ const Datatable = () => {
    
   ];
 
-  // const handleDelete = (id) => {
-  //   setData(data.filter((item) => item.id !== id));
+  const handleSelect = (email,gameName) => {
+    // dispatch(updateProjectStatus(email,gameName))
+    
+  };
+
+  // const handleUnSelect = (github_link) => {
+  //   const isSelected = false
+  //   dispatch(updateProjectStatus(github_link,isSelected))
+    
   // };
+
+  // useEffect(() => {
+  //   if(!userInfo){
+  //     navigate('/')
+  //   }
+
+  //   dispatch(listProjects());
+
+  // },[navigate,userInfo,dispatch, msg]);
+
+  const actionColumn = [
+    {
+      field: "select",
+      headerName: "Approve Payment",
+      width: 160,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      renderCell: (params) => {
+        return (
+          <div className="cellAction">
+            <div
+              className="selectButton"
+              onClick={() => handleSelect(params.row.email,"ballpool")}
+            >
+              Accept Payment
+            </div>
+          </div>
+        );
+      },
+    },
+    // {
+    //   field: "unselect",
+    //   headerName: "UnSelect",
+    //   width: 100,
+    //   renderCell: (params) => {
+    //     return (
+    //       <div className="cellAction">
+    //         <div
+    //           className="unselectButton"
+    //           onClick={() => handleUnSelect(params.row.email,"ballpool")}
+    //         >
+    //           UnSelect
+    //         </div>
+    //       </div>
+    //     );
+    //   },
+    // },
+  ];
 
   return (
     <>
@@ -102,7 +157,11 @@ const Datatable = () => {
       <DataGrid
         className="datagrid"
         rows={games}
-        columns={userColumns}
+        columns={
+          userInfo.role === "admin-super"
+            ? userColumns.concat(actionColumn)
+            : userColumns
+        }
         pageSize={20}
         rowsPerPageOptions={[20]}
         // checkboxSelection
