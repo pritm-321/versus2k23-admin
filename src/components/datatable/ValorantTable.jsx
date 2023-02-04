@@ -1,0 +1,221 @@
+import "./datatable.scss";
+import { DataGrid } from "@mui/x-data-grid";
+// import { userColumns, userRows } from "../../datatablesource";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Typography } from "@mui/material";
+import { Bars } from "react-loader-spinner";
+import { getGameList } from "../../redux/actions/gameActions";
+
+const Datatable = () => {
+
+  const dispatch = useDispatch();
+  const navigate=useNavigate()
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { userInfo } = userLogin;
+
+    const gameList = useSelector((state) => state.gameList);
+    const { games ,loading, error } = gameList;
+  console.log(games);
+
+  useEffect(()=>{
+    if(!userInfo){
+      navigate('/')
+    }
+    dispatch(getGameList("valorant"))
+  },[userInfo, navigate, dispatch])
+ 
+  const userColumns = [
+   
+    
+    {
+      field: "email",
+      headerName: "Email",
+      width: 300,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+        field: "phone",
+        headerName: "Phone",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+    },
+    {
+        field: "teamName",
+        headerName: "Team Name",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "teamName",
+        headerName: "Team Name",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player1Name",
+        headerName: "Player1",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player1RiotID",
+        headerName: "Player1 RiotID",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player2Name",
+        headerName: "Player2",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player2RiotID",
+        headerName: "Player2 RiotID",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player3Name",
+        headerName: "Player3",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player3RiotID",
+        headerName: "Player3 RiotID",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player4Name",
+        headerName: "Player4",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player4RiotID",
+        headerName: "Player4 RiotID",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player5Name",
+        headerName: "Player5",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player5RiotID",
+        headerName: "Player5 RiotID",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player6Name",
+        headerName: "Player6",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+      {
+        field: "player6RiotID",
+        headerName: "Player16RiotID",
+        width: 200,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+      },
+
+    {
+        field: "paymentStatus",
+        headerName: "Payment Status",
+        width: 100,
+        headerClassName: "super-app-theme--header",
+        headerAlign: "center",
+        renderCell: (params) => {
+          return (
+            <div className={`cellWithStatus ${params.row.paymentStatus}`}>
+              {params.row.paymentStatus.toString()}
+            </div>
+          );
+        },
+      },
+    
+
+   
+
+   
+  ];
+
+  // const handleDelete = (id) => {
+  //   setData(data.filter((item) => item.id !== id));
+  // };
+
+  return (
+    <>
+    <div className="listHeading mt-5">
+        <Typography variant="h3" component="h3">
+          All Registered Users
+        </Typography>
+      </div>
+      <div className="datatable">
+        {loading ? (
+          <Bars
+            height="80"
+            width="80"
+            color="#268dcd"
+            ariaLabel="bars-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        ) : (
+      
+      <DataGrid
+        className="datagrid"
+        rows={games}
+        columns={userColumns}
+        pageSize={20}
+        rowsPerPageOptions={[20]}
+        // checkboxSelection
+        getRowId={(row) => row._id}
+              getRowHeight={() => "auto"}
+              sx={{
+                boxShadow: 2,
+                border: 2,
+                borderColor: "primary.light",
+                "& .MuiDataGrid-cell:hover": {
+                  color: "primary.main",
+                },
+                '& .super-app-theme--header': {
+                  backgroundColor: 'rgba(255, 7, 0, 0.55)',
+                },
+              }}
+      />
+
+        )}
+      
+
+    </div>
+    </>
+  );
+};
+
+export default Datatable;
