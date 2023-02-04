@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "./datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 // import { userColumns, userRows } from "../../datatablesource";
@@ -9,27 +10,27 @@ import { Bars } from "react-loader-spinner";
 import { getGameList, updatePayment } from "../../redux/actions/gameActions";
 
 const Datatable = () => {
-
   const dispatch = useDispatch();
-  const navigate=useNavigate()
+  const navigate = useNavigate();
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
 
-    const gameList = useSelector((state) => state.gameList);
-    const { games ,loading, error } = gameList;
-  console.log(games);
+  const gameList = useSelector((state) => state.gameList);
+  const { games, loading, error } = gameList;
+  // console.log(games);
 
-  useEffect(()=>{
-    if(!userInfo){
-      navigate('/')
+  const paymentStatus = useSelector((state) => state.paymentUpdate);
+  const { msg } = paymentStatus;
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate("/");
     }
-    dispatch(getGameList("valorant"))
-  },[userInfo, navigate, dispatch])
- 
+    dispatch(getGameList("valorant"));
+  }, [userInfo, navigate, msg, dispatch]);
+
   const userColumns = [
-   
-    
     {
       field: "email",
       headerName: "Email",
@@ -38,130 +39,129 @@ const Datatable = () => {
       headerAlign: "center",
     },
     {
-        field: "phone",
-        headerName: "Phone",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
+      field: "phone",
+      headerName: "Phone",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
     },
     {
-        field: "teamName",
-        headerName: "Team Name",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "teamName",
-        headerName: "Team Name",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player1Name",
-        headerName: "Player1",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player1RiotID",
-        headerName: "Player1 RiotID",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player2Name",
-        headerName: "Player2",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player2RiotID",
-        headerName: "Player2 RiotID",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player3Name",
-        headerName: "Player3",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player3RiotID",
-        headerName: "Player3 RiotID",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player4Name",
-        headerName: "Player4",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player4RiotID",
-        headerName: "Player4 RiotID",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player5Name",
-        headerName: "Player5",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player5RiotID",
-        headerName: "Player5 RiotID",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player6Name",
-        headerName: "Player6",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
-      {
-        field: "player6RiotID",
-        headerName: "Player16RiotID",
-        width: 200,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-      },
+      field: "teamName",
+      headerName: "Team Name",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "teamName",
+      headerName: "Team Name",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player1Name",
+      headerName: "Player1",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player1RiotID",
+      headerName: "Player1 RiotID",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player2Name",
+      headerName: "Player2",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player2RiotID",
+      headerName: "Player2 RiotID",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player3Name",
+      headerName: "Player3",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player3RiotID",
+      headerName: "Player3 RiotID",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player4Name",
+      headerName: "Player4",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player4RiotID",
+      headerName: "Player4 RiotID",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player5Name",
+      headerName: "Player5",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player5RiotID",
+      headerName: "Player5 RiotID",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player6Name",
+      headerName: "Player6",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
+      field: "player6RiotID",
+      headerName: "Player16RiotID",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
 
     {
-        field: "paymentStatus",
-        headerName: "Payment Status",
-        width: 100,
-        headerClassName: "super-app-theme--header",
-        headerAlign: "center",
-        renderCell: (params) => {
-          return (
-            <div className={`cellWithStatus ${params.row.paymentStatus}`}>
-              {params.row.paymentStatus.toString()}
-            </div>
-          );
-        },
+      field: "paymentStatus",
+      headerName: "Payment Status",
+      width: 100,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+      renderCell: (params) => {
+        return (
+          <div className={`cellWithStatus ${params.row.paymentStatus}`}>
+            {params.row.paymentStatus.toString()}
+          </div>
+        );
       },
+    },
   ];
 
-  const handleSelect = (email,gameName) => {
-    dispatch(updatePayment(email,gameName))
-    
+  const handleSelect = (email, gameName) => {
+    dispatch(updatePayment(email, gameName));
   };
   const actionColumn = [
     {
@@ -175,7 +175,7 @@ const Datatable = () => {
           <div className="cellAction">
             <div
               className="selectButton"
-              onClick={() => handleSelect(params.row.email,"ballpool")}
+              onClick={() => handleSelect(params.row.email, "ballpool")}
             >
               Accept Payment
             </div>
@@ -191,7 +191,7 @@ const Datatable = () => {
 
   return (
     <>
-    <div className="listHeading mt-5">
+      <div className="listHeading mt-5">
         <Typography variant="h3" component="h3">
           All Registered Users
         </Typography>
@@ -208,35 +208,33 @@ const Datatable = () => {
             visible={true}
           />
         ) : (
-      
-      <DataGrid
-        className="datagrid"
-        rows={games}
-        columns={userInfo.role === "admin-super"
-        ? userColumns.concat(actionColumn)
-        : userColumns}
-        pageSize={20}
-        rowsPerPageOptions={[20]}
-        // checkboxSelection
-        getRowId={(row) => row._id}
-              getRowHeight={() => "auto"}
-              sx={{
-                boxShadow: 2,
-                border: 2,
-                borderColor: "primary.light",
-                "& .MuiDataGrid-cell:hover": {
-                  color: "primary.main",
-                },
-                '& .super-app-theme--header': {
-                  backgroundColor: 'rgba(255, 7, 0, 0.55)',
-                },
-              }}
-      />
-
+          <DataGrid
+            className="datagrid"
+            rows={games}
+            columns={
+              userInfo.role === "admin-super"
+                ? userColumns.concat(actionColumn)
+                : userColumns
+            }
+            pageSize={20}
+            rowsPerPageOptions={[20]}
+            // checkboxSelection
+            getRowId={(row) => row._id}
+            getRowHeight={() => "auto"}
+            sx={{
+              boxShadow: 2,
+              border: 2,
+              borderColor: "primary.light",
+              "& .MuiDataGrid-cell:hover": {
+                color: "primary.main",
+              },
+              "& .super-app-theme--header": {
+                backgroundColor: "rgba(255, 7, 0, 0.55)",
+              },
+            }}
+          />
         )}
-      
-
-    </div>
+      </div>
     </>
   );
 };
