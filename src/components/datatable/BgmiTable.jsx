@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Typography } from "@mui/material";
 import { Bars } from "react-loader-spinner";
-import { getGameList } from "../../redux/actions/gameActions";
+import { getGameList, updatePayment } from "../../redux/actions/gameActions";
 
 const Datatable = () => {
 
@@ -142,7 +142,7 @@ const Datatable = () => {
   // };
 
   const handleSelect = (email,gameName) => {
-    // dispatch(updateProjectStatus(email,gameName))
+    dispatch(updatePayment(email,gameName))
     
   };
 
