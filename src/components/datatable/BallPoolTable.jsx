@@ -16,7 +16,7 @@ const Datatable = () => {
 
   const userLogin = useSelector((state) => state.userLogin);
   const { userInfo } = userLogin;
-  console.log(userInfo);
+  // console.log(userInfo);
   const gameList = useSelector((state) => state.gameList);
   const { games, loading, error } = gameList;
   // console.log(games);

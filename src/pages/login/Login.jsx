@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../redux/actions/userActions";
 import "./login.scss";
+import { Bars } from "react-loader-spinner";
+import { ToastContainer, toast } from "react-toastify";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -19,9 +21,23 @@ const {loading, error, userInfo} = userLogin;
 useEffect(()=>{
   if(userInfo){
     navigate('/home')
-    
   }
-},[userInfo, navigate])
+  if(error){
+    toast.error(
+      error,
+      {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme:"dark",
+      }
+    )
+  }
+},[userInfo, navigate, error])
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -34,14 +50,25 @@ useEffect(()=>{
   return (
     <section>
       <div className="box">
+      <ToastContainer />
         <div className="square"></div>
         <div className="square"></div>
         <div className="square"></div>
         <div className="square"></div>
         <div className="square"></div>
         <div className="square"></div>
-
         <div className="container">
+        {loading ? (
+          <Bars
+            height="80"
+            width="80"
+            color="#268dcd"
+            ariaLabel="bars-loading"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+          />
+        ) : (
           <div className="form">
             <h2 style={{ textAlign: "center" }}>LOGIN</h2>
             <form action=""  onSubmit={submitHandler}>
@@ -77,7 +104,7 @@ useEffect(()=>{
                 </div>
               </div>
             </form>
-          </div>
+          </div>)}
         </div>
       </div>
     </section>
