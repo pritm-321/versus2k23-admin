@@ -159,6 +159,13 @@ const Datatable = () => {
       headerClassName: "super-app-theme--header",
       headerAlign: "center",
     },
+    {
+      field: "camAmb",
+      headerName: "Campus Amnbassador Code",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
 
     {
       field: "paymentStatus",
@@ -209,7 +216,7 @@ const Datatable = () => {
     <>
       <div className="listHeading mt-5">
         <Typography variant="h3" component="h3">
-          All Registered Users
+          Valorant Registered Users
         </Typography>
       </div>
       <div className="datatable">

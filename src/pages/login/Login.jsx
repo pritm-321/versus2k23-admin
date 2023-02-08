@@ -20,7 +20,7 @@ const {loading, error, userInfo} = userLogin;
 
 useEffect(()=>{
   if(userInfo){
-    navigate('/home')
+    navigate('/users')
   }
   if(error){
     toast.error(

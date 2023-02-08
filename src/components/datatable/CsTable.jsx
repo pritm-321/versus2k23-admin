@@ -105,6 +105,13 @@ const Datatable = () => {
       headerAlign: "center",
     },
     {
+      field: "camAmb",
+      headerName: "Campus Amnbassador Code",
+      width: 200,
+      headerClassName: "super-app-theme--header",
+      headerAlign: "center",
+    },
+    {
       field: "paymentStatus",
       headerName: "Payment Status",
       width: 100,
