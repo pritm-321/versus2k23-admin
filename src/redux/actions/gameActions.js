@@ -23,7 +23,7 @@ export const getGameList = (game) => async (dispatch, getState) => {
         console.log(game);
 
         const { data } = await axios.post(
-            "https://versus-event.herokuapp.com/api/v1/admin/bdb2edd1a123abf5f2be496aa5/getAllRegisteredGamesByGameName",{gameName:game} ,config
+            "https://versus2k23-backend.onrender.com/api/v1/admin/bdb2edd1a123abf5f2be496aa5/getAllRegisteredGamesByGameName",{gameName:game} ,config
         );
 
         dispatch({
@@ -58,7 +58,7 @@ export const updatePayment = (email, GameName) => async (dispatch, getState) => 
                 },
             };
             const { data } = await axios.post(
-                "https://versus-event.herokuapp.com/api/v1/admin/bdb2edd1a123abf5f2be496aa5/updatepaymentStatusByEmailAndGameName",{email : email , gameName : GameName} ,config
+                "https://versus2k23-backend.onrender.com/api/v1/admin/bdb2edd1a123abf5f2be496aa5/updatepaymentStatusByEmailAndGameName",{email : email , gameName : GameName} ,config
             );
             // console.log(data)
             dispatch({

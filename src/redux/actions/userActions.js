@@ -16,7 +16,7 @@ export const login = (name, password) => async (dispatch) => {
         // console.log(name, password);
 
         const { data } = await axios.post(
-            "https://versus-event.herokuapp.com/api/v1/admin/bdb2edd1a123abf5f2bd0373ce496aa5/loginAdmin",
+            "https://versus2k23-backend.onrender.com/api/v1/admin/bdb2edd1a123abf5f2bd0373ce496aa5/loginAdmin",
             { name, password },
             config
         );
@@ -62,7 +62,7 @@ export const getAllUsers = () => async (dispatch, getState) => {
         };
 
         const { data } = await axios.post(
-            "https://versus-event.herokuapp.com/api/v1/admin/bdb2edd1a123abf5f2bd03/getAllUsers",{},
+            "https://versus2k23-backend.onrender.com/api/v1/admin/bdb2edd1a123abf5f2bd03/getAllUsers",{},
             config
         );
 
